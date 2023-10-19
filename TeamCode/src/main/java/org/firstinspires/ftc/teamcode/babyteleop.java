@@ -17,7 +17,7 @@ public class babyteleop extends Auto_Util {
     static double lfPower;
     static double rbPower;
     static double rfPower;
-    static double slowamount = 1;
+    static double slowamount=1;
 
     public void runOpMode(){
         robot.init(hardwareMap);
@@ -39,16 +39,18 @@ public class babyteleop extends Auto_Util {
             lbPower = (fwdBackPower - turnPower + strafePower);
             rbPower = (fwdBackPower + turnPower - strafePower);
 
+            if(gamepad1.right_bumper){
+                slowamount = 0.07;
+            }  else{
+                slowamount = 1;
+            }
+//WHATAMIDOOOOOOOOOO
             robot.leftfrontDrive.setPower(lfPower*slowamount);
             robot.leftbackDrive.setPower(lbPower*slowamount);
             robot.rightfrontDrive.setPower(rfPower*slowamount);
             robot.rightbackDrive.setPower(rbPower*slowamount);
 
-            if(gamepad1.right_bumper){
-                slowamount=0.07;
-            }  else{
-                slowamount=1;
-            }
+
 
             if(gamepad1.dpad_up){
                 robot.leftfrontDrive.setPower(1);
